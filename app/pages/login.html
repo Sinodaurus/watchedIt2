@@ -1,0 +1,48 @@
+<div layout="row">
+  <div flex="30"></div>
+    <div flex="40">
+        <div ng-show="!newUserForm">
+          <md-toolbar class="md-hue-1 md-tall">
+            <div class="md-toolbar-tools">
+              Login...
+            </div>
+          </md-toolbar>
+          <md-content layout-padding>
+            <form name="loginForm" ng-submit="logIn()">
+              <md-input-container md-no-float>
+                <input name="username" ng-model="username" required md-maxlength="20" minlength="2" placeholder="Username">
+                <div ng-messages="loginForm.username.$error" ng-show="loginForm.username.$dirty">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="md-maxlength">That's too long!</div>
+                  <div ng-message="minlength">That's too short!</div>
+                </div>
+              </md-input-container>
+              <md-input-container md-no-float>
+                <input name="password" ng-model="password" required md-maxlength="20" minlength="2" placeholder="Password">
+                <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="md-maxlength">That's too long!</div>
+                  <div ng-message="minlength">That's too short!</div>
+                </div>
+              </md-input-container>
+              <md-button class="md-primary md-raised" type="submit">Login</md-button><md-button  class="md-primary md-raised" ng-click="changePassword()">Change password</md-button></br>
+              <md-button  class="md-primary md-raised" ng-click="switchNewUserForm()">New user</md-button>
+            </form>
+          </md-content>
+        </div>
+        <div ng-show="newUserForm">
+          <form ng-submit="createUser()" name="createuser">
+            <label>First name: <input ng-model="form.firstName" type="text"></label></br>
+            <label>Last name: <input ng-model="form.lastName" type="text"></label></br>
+            <label>Username: <input ng-model="form.userName" type="text"></label></br>
+            <label>Password: <input ng-model="form.password" type="password"></label></br>
+            <input type="submit" name="button" value="Save"></input>
+          </form>
+          <div ng-show="errorUser">
+            <b>User not created!</b>
+          </div>
+          <button ng-click="switchLoginForm()">Login as existing</button>
+        </div>
+    </div>
+  <div flex="30"></div>
+</div>

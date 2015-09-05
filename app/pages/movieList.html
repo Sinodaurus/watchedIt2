@@ -1,0 +1,16 @@
+<h3>Logged in as: {{user.firstName}} {{user.lastName}}</h3>
+<button ng-click="searchMovies()">Add new movie</button>
+<md-content>
+  <md-list>
+    <md-subheader class="md-no-sticky">3 line item</md-subheader>
+    <md-list-item class="md-3-line" ng-repeat="movie in user.seenMovies">
+      <img ng-src="{{movie.Poster}}" class="md-avatar" alt="X" />
+      <div class="md-list-item-text">
+        <h3>{{ movie.Title }}</h3>
+        <h4>{{ movie.Year }}</h4>
+        <p>{{ movie.Genre }}</p>
+      </div>
+      <md-button class="md-primary md-raised" ng-click="deleteMovie(movie.movieId)">Delete</md-button>
+    </md-list-item>
+  </md-list>
+</md-content>

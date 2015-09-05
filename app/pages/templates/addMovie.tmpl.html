@@ -1,0 +1,50 @@
+<md-dialog aria-label="Add Movie">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Add Movie</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon class="material-icons md-48">close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="width:800px;height:810px;min-height:100px;margin-top:64px;">
+    <div>
+
+      <md-toolbar layout="row" class="md-toolbar-tools md-hue-1" style="position: fixed; top: 64px; width: 100%; margin-left: -24px;">
+        <input ng-model="searchString" ng-change="querySearch()" style="width: 100%">
+      </md-toolbar>
+
+      <md-content ng-show="showMovieResults">
+        <section style="padding-right: 50px;">
+          <md-subheader class="md-primary">Found movies</md-subheader>
+          <md-list>
+            <md-list-item class="md-3-line" ng-repeat="movie in foundMovies">
+              <md-button ng-click="searchMovie(movie.imdbID)">
+                <div class="md-list-item-text">
+                  <h3>{{ movie.Title }}</h3>
+                  <h4>{{ movie.Year }}</h4>
+                  <p>{{ movie.Genre }}</p>
+                </div>
+              </md-button>
+            </md-list-item>
+          </md-list>
+        </section>
+      </md-content>
+      <md-content ng-show="!showMovieResults">
+        <section style="padding-right: 50px;">
+            <img ng-src="{{movieDetail.Poster}}" class="md-avatar" alt="X" />
+            <div class="md-list-item-text">
+              <h3>{{ movieDetail.Title }}</h3>
+              <h4>{{ movieDetail.Year }}</h4>
+              <p>{{ movieDetail.Genre }}</p>
+            </div>
+            <md-button class="md-icon-button" ng-click="add(movie.imdbID)">
+              <md-icon class="material-icons md-48">add</md-icon>
+            </md-button>
+        </section>
+      </md-content>
+
+    </div>
+  </md-dialog-content>
+</md-dialog>
