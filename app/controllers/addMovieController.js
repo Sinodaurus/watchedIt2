@@ -3,14 +3,18 @@
 angular.module('watcher.addMovieController', ['ngMaterial'])
 .controller('addMovieController', ['$http', '$scope', '$rootScope', '$mdDialog', 'Movie', 'PersonSeenMovie', function($http, $scope, $rootScope, $mdDialog, Movie, PersonSeenMovie) {
   $scope.showMovieResults = true;
+  $scope.showNothing = true;
   $scope.searchText = null;
 
   $scope.querySearch = function() {
-    $http.get('http://www.omdbapi.com/?s=*'+$scope.searchString+"*")
-    .then(function(response) {
-      $scope.foundMovies = response.data["Search"];
-      return response.data["Search"];
-    });
+    if($scope.searchString.length > 2) {
+      $scope.showNothing = false;
+      $http.get('http://www.omdbapi.com/?s=*'+$scope.searchString+"*")
+      .then(function(response) {
+        $scope.foundMovies = response.data["Search"];
+        return response.data["Search"];
+      });
+    }
   }
 
   function addToScopeIfNotDuplicate(data) {

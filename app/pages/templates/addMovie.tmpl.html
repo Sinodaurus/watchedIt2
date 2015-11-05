@@ -15,30 +15,32 @@
         <input ng-model="searchString" ng-change="querySearch()" style="width: 100%">
       </md-toolbar>
 
-      <md-content ng-show="showMovieResults">
+      <md-content ng-show="showMovieResults && !showNothing">
         <section style="padding-right: 50px;">
           <md-subheader class="md-primary">Found movies</md-subheader>
           <md-list>
-            <md-list-item class="md-3-line" ng-repeat="movie in foundMovies">
-              <md-button ng-click="searchMovie(movie.imdbID)">
+            <md-list-item class="md-3-line" ng-click="searchMovie(movie.imdbID)" ng-repeat="movie in foundMovies">
                 <div class="md-list-item-text">
                   <h3>{{ movie.Title }}</h3>
                   <h4>{{ movie.Year }}</h4>
                   <p>{{ movie.Genre }}</p>
-                </div>
               </md-button>
             </md-list-item>
           </md-list>
         </section>
       </md-content>
-      <md-content ng-show="!showMovieResults">
-        <section style="padding-right: 50px;">
-            <img ng-src="{{movieDetail.Poster}}" class="md-avatar" alt="X" />
-            <div class="md-list-item-text">
-              <h3>{{ movieDetail.Title }}</h3>
-              <h4>{{ movieDetail.Year }}</h4>
-              <p>{{ movieDetail.Genre }}</p>
-            </div>
+      <md-content ng-show="!showMovieResults && !showNothing">
+        <section style="padding-right: 50px;" layout="column">
+          <md-list>
+              <md-list-item class="md-3-line">
+              <img ng-src="{{movieDetail.Poster}}" class="md-avatar" alt="X" />
+              <div class="md-list-item-text">
+                <h3>{{ movieDetail.Title }}</h3>
+                <h4>{{ movieDetail.Year }}</h4>
+                <p>{{ movieDetail.Genre }}</p>
+              </div>
+            </md-list-item>
+          </md-list>
             <md-button class="md-icon-button" ng-click="add(movie.imdbID)">
               <md-icon class="material-icons md-48">add</md-icon>
             </md-button>
